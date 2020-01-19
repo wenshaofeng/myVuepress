@@ -32,6 +32,8 @@
 ## JWT简介
 `JWT`的全称为<font color=#3eaf7c>JSON Web Token</font>,是一个开发的标准（RFC 7519）
 
+jwt是一种轻量级的、简单的方案。主要思路是后端拿着用户名、密码请求后端，后端验证通过后，返回给前端一个token（包含用户id、过期时间等的json），这个token是个加过密的json字符串。前端把这个字符串放在http请求头（可以跨域，放在cookie就没法跨域），每次请求都带上这个参数，后端就能验证当前用户。
+
 ### 1. JWT的概念：
 + <font color=#3eaf7c>定义了一种紧凑却独立的方式，可以将各方之间的信息作为JSON对象进行安全传输</font>
 + <font color=#3eaf7c>该信息可以验证和信任，因为是经过数字签名的</font>

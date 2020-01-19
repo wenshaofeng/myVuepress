@@ -19,6 +19,7 @@ module.exports = {
       href: '/icon.png'
     }]
   ],
+  plugins: ['@vuepress/back-to-top'],   //  配置回到顶部的插件  
   // 端口号
   port: 3000,
   markdown: {

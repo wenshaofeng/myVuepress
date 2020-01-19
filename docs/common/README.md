@@ -1,4 +1,5 @@
 ---
+sidebar: auto
 prev: false
 next: /common/next1.md
 ---
@@ -6,9 +7,27 @@ next: /common/next1.md
 
 ## 自动生成目录
 [[toc]]
+目录（Table of Contents）的渲染可以通过 markdown.toc 选项来配置。
+
+## 自定义容器
+::: tip
+这是一个提示
+提示提示
+提示提示
+
+:::
+
+::: warning
+这是一个警告
+:::
+
+::: danger 危险
+这是一个危险警告
+:::
+
 
 ## 代码块高亮及行号
-```js {2, 3, 4}
+```js {2,3,5}
 export default function sayHello () {
   console.log('Hello');
   console.log('World');
