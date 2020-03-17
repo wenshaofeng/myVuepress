@@ -1,9 +1,8 @@
 
 const node_BFF_sidebars = require('./siderbars/node_BFF')
 const node_zhihu_sidebars = require('./siderbars/node_zhihu')
-
-console.log( node_BFF_sidebars);
-
+const typescript_learn_sidebars = require('./siderbars/typescript_learn')
+const webpack_demo_sidebars = require('./siderbars/webpack_demo')
 
 module.exports = {
    // 部署站点的基础路径
@@ -40,7 +39,7 @@ module.exports = {
     // 编辑链接
     editLinks: true,
     // 编辑链接label
-    editLinkText: '编辑此页',
+    editLinkText: '编辑此',
     // 导航
     nav: [{
         text: '前端面试之道',
@@ -57,6 +56,15 @@ module.exports = {
             link: '/jsbooks/renzhe/'
           },
 
+        ]
+      },
+      {
+        text: 'TS',
+        items: [
+          {
+            text: 'TypeScript初学',
+            link: '/jsbooks/typescript_learn/'
+          }, 
         ]
       },
       {
@@ -81,8 +89,13 @@ module.exports = {
         link: '/vue/'
       },
       {
-        text: 'Webpack',
-        link: '/webpack/'
+        text: '工程化相关',
+        items: [
+          {
+            text: 'Webpack基础',
+            link: '/webpack/'
+          },
+        ]
       },
       {
         text: 'VuePress',
@@ -99,7 +112,9 @@ module.exports = {
       '/jsbooks/es6/':  genSidebarConfig('深入理解Es6'),
       '/jsbooks/renzhe/': genSidebarConfig('javaScript忍者秘籍'),
       '/node/node_BFF/':node_BFF_sidebars,
-      '/node/node_zhihu/':node_zhihu_sidebars
+      '/node/node_zhihu/':node_zhihu_sidebars,
+      '/jsbooks/typescript_learn/':typescript_learn_sidebars,
+      '/webpack/':webpack_demo_sidebars
     },
   },
 
