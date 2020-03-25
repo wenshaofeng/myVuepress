@@ -247,6 +247,7 @@ checkout (commit) [file] NO      YES     YES       NO
 
 
 
+
 ## 常见的团队工作模型
 
 #### 最简单的基本模型 （集中式工作流）
