@@ -3,6 +3,7 @@ const node_BFF_sidebars = require('./siderbars/node_BFF')
 const node_zhihu_sidebars = require('./siderbars/node_zhihu')
 const typescript_learn_sidebars = require('./siderbars/typescript_learn')
 const webpack_demo_sidebars = require('./siderbars/webpack_demo')
+const git_note_sidebars = require('./siderbars/git_note')
 
 module.exports = {
    // 部署站点的基础路径
@@ -95,16 +96,18 @@ module.exports = {
             text: 'Webpack基础',
             link: '/webpack/'
           },
+          {
+            text:'git 相关',
+            link:'/git_note/'
+          }
         ]
       },
-      {
-        text: 'VuePress',
-        link: '/vuepress/'
-      },
+      
       {
         text: '基础配置功能',
         link: '/common/'
-      }
+      },
+
     ],
     // 侧边栏
 
@@ -114,7 +117,8 @@ module.exports = {
       '/node/node_BFF/':node_BFF_sidebars,
       '/node/node_zhihu/':node_zhihu_sidebars,
       '/jsbooks/typescript_learn/':typescript_learn_sidebars,
-      '/webpack/':webpack_demo_sidebars
+      '/webpack/':webpack_demo_sidebars,
+      '/git_note/':git_note_sidebars
     },
   },
 
@@ -123,7 +127,8 @@ module.exports = {
       // 静态资源的别名
       alias: {
         '@vuepress': '../images/vuepress',
-        '@vue': '../images/vue'
+        '@vue': '../images/vue',
+        '@git_note':'../git_note/img'
       }
     }
   }
