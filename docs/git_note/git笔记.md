@@ -72,16 +72,17 @@ git cherry-pick f79b0b1ffe445cab6e531260743fa4e08fb4048b
 ```
 
 当两个分支各自前进，即"分叉了后"
-![]~@gitmg/git.webp)
+<img :src="$withBase('/node_combat_bff.png')">
+![](./img/git.webp)
 #####  git merge
 在这里，你可以用"pull"命令把"origin"分支上的修改拉下来并且和你的修改合并； 结果看起来就像一个新的"合并的提交"(merge commit)。
-![]~@gitmg/merge.webp)
+![](~@gitmg/merge.webp)
 #####  git rebase
 但是，如果你想让"mywork"分支历史看起来像没有经过任何合并一样，你也许可以用 git rebase:
-![]~@gitmg/rebase.webp)
+![](~@gitmg/rebase.webp)
 当'mywork'分支更新之后，它会指向这些新创建的提交(commit),而那些老的提交会被丢弃。 如果运行垃圾收集命令(pruning garbage collection), 这些被丢弃的提交就会删除. （请查看 git gc)
 
-![]~@gitmg/git-gc.webp)
+![](~@gitmg/git-gc.webp)
 有点类似 git merge，但是两者又有不同，merge 适合那种比较琐碎的，简单的合并，系统级的合并还是用 rebase 吧。
 
 打个比方，你有两个抽屉A和B，里面都装了衣服，现在想把B中的衣服放到A中，git merge 是那种横冲直撞型的，拿起B就倒入A里面，如果满了（冲突）再一并整理；而 git rebase 就很持家了，它会一件一件的从B往A中加，会根据一开始放入的时间顺序的来加，如果满了你可以处理这一件，你可以继续加，或者跳过这一件，又或者不加了，把A还原。

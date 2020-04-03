@@ -6,8 +6,8 @@ const webpack_demo_sidebars = require('./siderbars/webpack_demo')
 const git_note_sidebars = require('./siderbars/git_note')
 
 module.exports = {
-   // 部署站点的基础路径
-   base: '/myVuepress/',
+  // 部署站点的基础路径
+  base: '/',
   // 页面标题
   title: 'Person Blog',
   // 网页描述
@@ -20,6 +20,17 @@ module.exports = {
     }]
   ],
   plugins: ['@vuepress/back-to-top'],   //  配置回到顶部的插件  
+  chainWebpack: (config, isServer) => {
+    const inlineLimit = 10000
+    config.module.rule('images')
+      .test(/\.(png|jpe?g|gif|webp)(\?.*)?$/)
+      .use('url-loader')
+      .loader('url-loader')
+      .options({
+        limit: inlineLimit,
+        name: `assets/img/[name].[hash:8].[ext]`
+      })
+  },
   // 端口号
   port: 3000,
   markdown: {
@@ -43,82 +54,82 @@ module.exports = {
     editLinkText: '编辑此',
     // 导航
     nav: [{
-        text: '前端面试之道',
-        link: '/interview/'
+      text: '前端面试之道',
+      link: '/interview/'
+    },
+    {
+      text: 'JavaScript书籍',
+      items: [{
+        text: '深入理解ES6',
+        link: '/jsbooks/es6/'
       },
       {
-        text: 'JavaScript书籍',
-        items: [{
-            text: '深入理解ES6',
-            link: '/jsbooks/es6/'
-          },
-          {
-            text: 'javaScript忍者秘籍',
-            link: '/jsbooks/renzhe/'
-          },
+        text: 'javaScript忍者秘籍',
+        link: '/jsbooks/renzhe/'
+      },
 
-        ]
-      },
-      {
-        text: 'TS',
-        items: [
-          {
-            text: 'TypeScript初学',
-            link: '/jsbooks/typescript_learn/'
-          }, 
-        ]
-      },
-      {
-        text: 'node',
-        items: [
-          {
-            text: 'node_BFF',
-            link: '/node/node_BFF/'
-          },
-          {
-            text: 'node_RESTful',
-            link: '/node/node_zhihu/'
-          },
-        ]
-      },
-      {
-        text: '数据结构和算法',
-        link: '/algorithm/'
-      },
-      {
-        text: 'Vue.js',
-        link: '/vue/'
-      },
-      {
-        text: '工程化相关',
-        items: [
-          {
-            text: 'Webpack基础',
-            link: '/webpack/'
-          },
-          {
-            text:'git 相关',
-            link:'/git_note/'
-          }
-        ]
-      },
-      
-      {
-        text: '基础配置功能',
-        link: '/common/'
-      },
+      ]
+    },
+    {
+      text: 'TS',
+      items: [
+        {
+          text: 'TypeScript初学',
+          link: '/jsbooks/typescript_learn/'
+        },
+      ]
+    },
+    {
+      text: 'node',
+      items: [
+        {
+          text: 'node_BFF',
+          link: '/node/node_BFF/'
+        },
+        {
+          text: 'node_RESTful',
+          link: '/node/node_zhihu/'
+        },
+      ]
+    },
+    {
+      text: '数据结构和算法',
+      link: '/algorithm/'
+    },
+    {
+      text: 'Vue.js',
+      link: '/vue/'
+    },
+    {
+      text: '工程化相关',
+      items: [
+        {
+          text: 'Webpack基础',
+          link: '/webpack/'
+        },
+        {
+          text: 'git 相关',
+          link: '/git_note/'
+        }
+      ]
+    },
+
+    {
+      text: '基础配置功能',
+      link: '/common/'
+    },
 
     ],
     // 侧边栏
 
     sidebar: {
-      '/jsbooks/es6/':  genSidebarConfig('深入理解Es6'),
+      '/jsbooks/es6/': genSidebarConfig('深入理解Es6'),
       '/jsbooks/renzhe/': genSidebarConfig('javaScript忍者秘籍'),
-      '/node/node_BFF/':node_BFF_sidebars,
-      '/node/node_zhihu/':node_zhihu_sidebars,
-      '/jsbooks/typescript_learn/':typescript_learn_sidebars,
-      '/webpack/':webpack_demo_sidebars,
-      '/git_note/':git_note_sidebars
+      '/node/node_BFF/': node_BFF_sidebars,
+      '/node/node_zhihu/': node_zhihu_sidebars,
+      '/jsbooks/typescript_learn/': typescript_learn_sidebars,
+      '/webpack/': webpack_demo_sidebars,
+      '/git_note/': git_note_sidebars
     },
   },
 
@@ -128,7 +139,7 @@ module.exports = {
       alias: {
         '@vuepress': '../images/vuepress',
         '@vue': '../images/vue',
-        '@git_note':'../git_note/img'
+        '@gitmg': '../git_note/img'
       }
     }
   }
@@ -141,7 +152,7 @@ function genSidebarConfig(title) {
       return [{
         title,
         collapsable: false,
-        children:[
+        children: [
           'test1',
           'test2'
         ]
@@ -151,7 +162,7 @@ function genSidebarConfig(title) {
       return [{
         title,
         collapsable: false,
-        children:[
+        children: [
           'hushuobadao',
           'test1',
           'test2'
