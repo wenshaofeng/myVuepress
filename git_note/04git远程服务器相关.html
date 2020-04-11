@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>github多账户及SSH密钥配置 | Person Blog</title>
+    <meta name="description" content="废柴阿蔚的个人站点">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/myVuepress/icon.png">
+    
+    <link rel="preload" href="/myVuepress/assets/css/0.styles.179f8242.css" as="style"><link rel="preload" href="/myVuepress/assets/js/app.9affc5a9.js" as="script"><link rel="preload" href="/myVuepress/assets/js/2.f8270d47.js" as="script"><link rel="preload" href="/myVuepress/assets/js/20.7bc10cd4.js" as="script"><link rel="prefetch" href="/myVuepress/assets/js/10.7cc7d6e5.js"><link rel="prefetch" href="/myVuepress/assets/js/11.a8ac10fd.js"><link rel="prefetch" href="/myVuepress/assets/js/12.97293f8a.js"><link rel="prefetch" href="/myVuepress/assets/js/13.0fcd3896.js"><link rel="prefetch" href="/myVuepress/assets/js/14.ef03bf45.js"><link rel="prefetch" href="/myVuepress/assets/js/15.cdf889e2.js"><link rel="prefetch" href="/myVuepress/assets/js/16.65dc8ac3.js"><link rel="prefetch" href="/myVuepress/assets/js/17.f80406a6.js"><link rel="prefetch" href="/myVuepress/assets/js/18.4c78c05d.js"><link rel="prefetch" href="/myVuepress/assets/js/19.c99892e6.js"><link rel="prefetch" href="/myVuepress/assets/js/21.da987efb.js"><link rel="prefetch" href="/myVuepress/assets/js/22.7f27ed16.js"><link rel="prefetch" href="/myVuepress/assets/js/23.03e52dc3.js"><link rel="prefetch" href="/myVuepress/assets/js/24.a1044a31.js"><link rel="prefetch" href="/myVuepress/assets/js/25.2c1992a2.js"><link rel="prefetch" href="/myVuepress/assets/js/26.aa8cb714.js"><link rel="prefetch" href="/myVuepress/assets/js/27.3e7f44d9.js"><link rel="prefetch" href="/myVuepress/assets/js/28.1272e8bb.js"><link rel="prefetch" href="/myVuepress/assets/js/29.0dfaa0e2.js"><link rel="prefetch" href="/myVuepress/assets/js/3.619e3deb.js"><link rel="prefetch" href="/myVuepress/assets/js/30.2871f184.js"><link rel="prefetch" href="/myVuepress/assets/js/31.b067a343.js"><link rel="prefetch" href="/myVuepress/assets/js/32.788def14.js"><link rel="prefetch" href="/myVuepress/assets/js/33.ac1c172b.js"><link rel="prefetch" href="/myVuepress/assets/js/34.e4fcb805.js"><link rel="prefetch" href="/myVuepress/assets/js/35.283fd3a4.js"><link rel="prefetch" href="/myVuepress/assets/js/36.4f4b6b96.js"><link rel="prefetch" href="/myVuepress/assets/js/37.2ad18478.js"><link rel="prefetch" href="/myVuepress/assets/js/38.d07251f1.js"><link rel="prefetch" href="/myVuepress/assets/js/39.1f4032f5.js"><link rel="prefetch" href="/myVuepress/assets/js/4.0435c713.js"><link rel="prefetch" href="/myVuepress/assets/js/40.421032fc.js"><link rel="prefetch" href="/myVuepress/assets/js/41.54f8af4c.js"><link rel="prefetch" href="/myVuepress/assets/js/42.6c8967ce.js"><link rel="prefetch" href="/myVuepress/assets/js/43.699fe672.js"><link rel="prefetch" href="/myVuepress/assets/js/44.d3aaecd1.js"><link rel="prefetch" href="/myVuepress/assets/js/45.9b1fba45.js"><link rel="prefetch" href="/myVuepress/assets/js/46.bfec08f7.js"><link rel="prefetch" href="/myVuepress/assets/js/47.c6512b42.js"><link rel="prefetch" href="/myVuepress/assets/js/48.7aefb4e5.js"><link rel="prefetch" href="/myVuepress/assets/js/49.854d2c9e.js"><link rel="prefetch" href="/myVuepress/assets/js/5.558222ec.js"><link rel="prefetch" href="/myVuepress/assets/js/50.044ef724.js"><link rel="prefetch" href="/myVuepress/assets/js/51.f4896457.js"><link rel="prefetch" href="/myVuepress/assets/js/52.a3c6b05c.js"><link rel="prefetch" href="/myVuepress/assets/js/53.36d4be9a.js"><link rel="prefetch" href="/myVuepress/assets/js/54.ce514ae7.js"><link rel="prefetch" href="/myVuepress/assets/js/55.fd14391e.js"><link rel="prefetch" href="/myVuepress/assets/js/56.ca152f03.js"><link rel="prefetch" href="/myVuepress/assets/js/57.595856d4.js"><link rel="prefetch" href="/myVuepress/assets/js/58.0cab6c65.js"><link rel="prefetch" href="/myVuepress/assets/js/59.3cf9da10.js"><link rel="prefetch" href="/myVuepress/assets/js/6.d20b0c6e.js"><link rel="prefetch" href="/myVuepress/assets/js/60.36fc6ac2.js"><link rel="prefetch" href="/myVuepress/assets/js/61.a2a9e844.js"><link rel="prefetch" href="/myVuepress/assets/js/62.8a4c0f53.js"><link rel="prefetch" href="/myVuepress/assets/js/63.b5f86849.js"><link rel="prefetch" href="/myVuepress/assets/js/64.9c529920.js"><link rel="prefetch" href="/myVuepress/assets/js/65.c1ba8261.js"><link rel="prefetch" href="/myVuepress/assets/js/66.52273d6b.js"><link rel="prefetch" href="/myVuepress/assets/js/67.81fd65e0.js"><link rel="prefetch" href="/myVuepress/assets/js/68.fd487924.js"><link rel="prefetch" href="/myVuepress/assets/js/69.576833e1.js"><link rel="prefetch" href="/myVuepress/assets/js/7.54cc5d55.js"><link rel="prefetch" href="/myVuepress/assets/js/70.321b474f.js"><link rel="prefetch" href="/myVuepress/assets/js/71.3424a716.js"><link rel="prefetch" href="/myVuepress/assets/js/72.08e5215c.js"><link rel="prefetch" href="/myVuepress/assets/js/73.48e08255.js"><link rel="prefetch" href="/myVuepress/assets/js/74.4526050e.js"><link rel="prefetch" href="/myVuepress/assets/js/75.6cab4ab2.js"><link rel="prefetch" href="/myVuepress/assets/js/76.ab3887de.js"><link rel="prefetch" href="/myVuepress/assets/js/77.88bb657d.js"><link rel="prefetch" href="/myVuepress/assets/js/78.e9b13ff0.js"><link rel="prefetch" href="/myVuepress/assets/js/79.30cff021.js"><link rel="prefetch" href="/myVuepress/assets/js/8.9f971d9c.js"><link rel="prefetch" href="/myVuepress/assets/js/80.0c644097.js"><link rel="prefetch" href="/myVuepress/assets/js/81.ceb83770.js"><link rel="prefetch" href="/myVuepress/assets/js/82.ce519f37.js"><link rel="prefetch" href="/myVuepress/assets/js/83.eeb50b18.js"><link rel="prefetch" href="/myVuepress/assets/js/84.7256cf96.js"><link rel="prefetch" href="/myVuepress/assets/js/85.2a165d0a.js"><link rel="prefetch" href="/myVuepress/assets/js/86.61c5f639.js"><link rel="prefetch" href="/myVuepress/assets/js/87.7cd111cd.js"><link rel="prefetch" href="/myVuepress/assets/js/88.ef0f4a42.js"><link rel="prefetch" href="/myVuepress/assets/js/89.77bf2a47.js"><link rel="prefetch" href="/myVuepress/assets/js/9.f3a8670d.js"><link rel="prefetch" href="/myVuepress/assets/js/90.ec2e1f89.js"><link rel="prefetch" href="/myVuepress/assets/js/91.91f2f18a.js"><link rel="prefetch" href="/myVuepress/assets/js/92.589f12ff.js"><link rel="prefetch" href="/myVuepress/assets/js/93.3142ce3f.js"><link rel="prefetch" href="/myVuepress/assets/js/94.9797379b.js"><link rel="prefetch" href="/myVuepress/assets/js/95.52ac67cb.js"><link rel="prefetch" href="/myVuepress/assets/js/96.bdd6565d.js">
+    <link rel="stylesheet" href="/myVuepress/assets/css/0.styles.179f8242.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myVuepress/" class="home-link router-link-active"><img src="/myVuepress/icon.png" alt="Person Blog" class="logo"> <span class="site-name can-hide">Person Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/myVuepress/interview/" class="nav-link">
+  前端面试之道
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="JavaScript书籍" class="dropdown-title"><span class="title">JavaScript书籍</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/es6/" class="nav-link">
+  深入理解ES6
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/renzhe/" class="nav-link">
+  javaScript忍者秘籍
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/you_Dont_Know_JavaScript/" class="nav-link">
+  你不知道的JavaScript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="TS" class="dropdown-title"><span class="title">TS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/typescript_learn/" class="nav-link">
+  TypeScript初学
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="node" class="dropdown-title"><span class="title">node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/node/node_BFF/" class="nav-link">
+  node_BFF
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/node/node_zhihu/" class="nav-link">
+  node_RESTful
+</a></li></ul></div></div><div class="nav-item"><a href="/myVuepress/algorithm/" class="nav-link">
+  数据结构和算法
+</a></div><div class="nav-item"><a href="/myVuepress/vue/" class="nav-link">
+  Vue.js
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化相关" class="dropdown-title"><span class="title">工程化相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/webpack/" class="nav-link">
+  Webpack基础
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/git_note/" class="nav-link router-link-active">
+  git 相关
+</a></li></ul></div></div><div class="nav-item"><a href="/myVuepress/common/" class="nav-link">
+  基础配置功能
+</a></div> <a href="https://github.com/#" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/myVuepress/interview/" class="nav-link">
+  前端面试之道
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="JavaScript书籍" class="dropdown-title"><span class="title">JavaScript书籍</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/es6/" class="nav-link">
+  深入理解ES6
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/renzhe/" class="nav-link">
+  javaScript忍者秘籍
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/you_Dont_Know_JavaScript/" class="nav-link">
+  你不知道的JavaScript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="TS" class="dropdown-title"><span class="title">TS</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/jsbooks/typescript_learn/" class="nav-link">
+  TypeScript初学
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="node" class="dropdown-title"><span class="title">node</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/node/node_BFF/" class="nav-link">
+  node_BFF
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/node/node_zhihu/" class="nav-link">
+  node_RESTful
+</a></li></ul></div></div><div class="nav-item"><a href="/myVuepress/algorithm/" class="nav-link">
+  数据结构和算法
+</a></div><div class="nav-item"><a href="/myVuepress/vue/" class="nav-link">
+  Vue.js
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化相关" class="dropdown-title"><span class="title">工程化相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myVuepress/webpack/" class="nav-link">
+  Webpack基础
+</a></li><li class="dropdown-item"><!----> <a href="/myVuepress/git_note/" class="nav-link router-link-active">
+  git 相关
+</a></li></ul></div></div><div class="nav-item"><a href="/myVuepress/common/" class="nav-link">
+  基础配置功能
+</a></div> <a href="https://github.com/#" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>git 学习笔记</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/myVuepress/git_note/01git概览和基本思想.html" class="sidebar-link">Git 概览</a></li><li><a href="/myVuepress/git_note/02git常用操作.html" class="sidebar-link">git 常用操作</a></li><li><a href="/myVuepress/git_note/03git分支.html" class="sidebar-link">git 分支</a></li><li><a href="/myVuepress/git_note/04git远程服务器相关.html" class="active sidebar-link">github多账户及SSH密钥配置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#github多账户及ssh密钥配置" class="sidebar-link">github多账户及SSH密钥配置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#创建秘钥" class="sidebar-link">创建秘钥</a></li><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#秘钥管理" class="sidebar-link">秘钥管理</a></li><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#用户信息" class="sidebar-link">用户信息</a></li></ul></li><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#连接多个远程服务器" class="sidebar-link">连接多个远程服务器</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#小结" class="sidebar-link">小结</a></li></ul></li><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#远程出错需要覆盖" class="sidebar-link">远程出错需要覆盖</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myVuepress/git_note/04git远程服务器相关.html#强制推送的权限问题" class="sidebar-link">强制推送的权限问题</a></li></ul></li></ul></li><li><a href="/myVuepress/git_note/05git原理.html" class="sidebar-link">Git存储原理</a></li><li><a href="/myVuepress/git_note/git.html" class="sidebar-link">Git分享</a></li><li><a href="/myVuepress/git_note/git_problem.html" class="sidebar-link">git clone 速度太慢</a></li><li><a href="/myVuepress/git_note/git数据恢复.html" class="sidebar-link">git 数据恢复</a></li><li><a href="/myVuepress/git_note/git笔记.html" class="sidebar-link">基本的几个概念</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="github多账户及ssh密钥配置"><a href="#github多账户及ssh密钥配置" class="header-anchor">#</a> github多账户及SSH密钥配置</h2> <ul><li>创建秘钥</li> <li>秘钥管理</li> <li>删除 git 全局的用户信息，在每次初次进入不同账号的 git 项目时，设置用户信息</li></ul> <h3 id="创建秘钥"><a href="#创建秘钥" class="header-anchor">#</a> 创建秘钥</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>ssh-keygen -t rsa -b <span class="token number">4096</span> -C <span class="token string">&quot;your_email@example.com&quot;</span>
+<span class="token comment"># 或者</span>
+ssh-keygen -t rsa -b <span class="token number">4096</span> -f ~/.ssh/id_rsa.github -C <span class="token string">&quot;your_email@example.com&quot;</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h4 id="ssh权限"><a href="#ssh权限" class="header-anchor">#</a> ssh权限</h4> <p>为了让私钥文件和公钥文件能够在认证中起作用，请确保权限正确。</p> <p>对于.ssh 以及父文件夹，当前用户用户一定要有执行权限，其他用户最多只能有执行权限。</p> <p>对于公钥和私钥文件也是: 当前用户一定要有执行权限，其他用户最多只能有执行权限。</p> <p>对于利用公钥登录，对其他用户配置执行权限是没有问题的。但是对于git，公钥和私钥, 以及config等相关文件的权限，其他用户不可有任何权限。</p> <h4 id="设置免秘钥登录后，仍然不能免秘钥登录的问题。"><a href="#设置免秘钥登录后，仍然不能免秘钥登录的问题。" class="header-anchor">#</a> 设置免秘钥登录后，仍然不能免秘钥登录的问题。</h4> <p>因为sshd为了安全，对属主的目录和文件权限有所要求。如果权限不对，则ssh的免密码登陆不生效。
+用户目录权限为 755 或者 700，就是不能是77x、777，需要保障other用户不能有w权限
+.ssh目录权限一般为755或者700。
+rsa_id.pub 及authorized_keys权限一般为644
+rsa_id权限必须为600</p> <p>例如：</p> <p>.ssh目录权限</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>drwx------   2 root root       4096 Apr  9  2015 .ssh
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>.ssh目录下文件的权限</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>-rw-r--r--   1 root root 1609 Mar  2 14:05 authorized_keys
+-rw-------   1 root root 1675 Dec 12  2014 id_rsa
+-rw-r--r--   1 root root  405 Dec 12  2014 id_rsa.pub
+-rw-r--r--   1 root root 4701 May 25  2016 known_hosts
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>这里的权限指的是对端的权限，如从A主机 通过ssh连接 B主机，B主机权限按照上边的设置进行。</p> <ul><li>常见的权限表示形式</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>-rw------- (600)      只有拥有者有读写权限。
+-rw-r--r-- (644)      只有拥有者有读写权限；而属组用户和其他用户只有读权限。
+-rwx------ (700)     只有拥有者有读、写、执行权限。
+-rwxr-xr-x (755)    拥有者有读、写、执行权限；而属组用户和其他用户只有读、执行权限。
+-rwx--x--x (711)    拥有者有读、写、执行权限；而属组用户和其他用户只有执行权限。
+-rw-rw-rw- (666)   所有用户都有文件读、写权限。
+-rwxrwxrwx (777)  所有用户都有读、写、执行权限。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="秘钥管理"><a href="#秘钥管理" class="header-anchor">#</a> 秘钥管理</h3> <p>配置<code>~/.ssh/config</code>文件，如果没有该文件，通过<code>touch config</code>命令创建。注意<code>HostName github.com</code></p> <div class="language-config line-numbers-mode"><pre class="language-text"><code>Host github.com
+  HostName github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/new_id_rsa
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>把私钥添加到ssh-agent并存入keychain，执行命令会要求你输入密码</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>ssh-add -K ~/.ssh/new_id_rsa
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>在 GitHub 上添加公钥</p> <p>测试
+<code>ssh -T git@github.com</code></p> <h4 id="多个秘钥"><a href="#多个秘钥" class="header-anchor">#</a> 多个秘钥</h4> <p>修改 config</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Host old.github.com
+  HostName github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/old_id_rsa
+
+Host new.github.com
+  HostName github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/new_id_rsa
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>测试<code>old.github.com</code></p> <p><code>ssh -T git@old.github.com</code></p> <p>测试<code>new.github.com</code></p> <p><code>ssh -T git@new.github.com</code></p> <h3 id="用户信息"><a href="#用户信息" class="header-anchor">#</a> 用户信息</h3> <p>使用需要注意，git@后要改为对应账户的别名。
+如new_id_rsa密钥对应的GitHub账户上有个仓库test.git，且你的GitHub用户名是username，使用下面命令克隆</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git clone git@new.github.com:username/test.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>如old_id_rsa密钥对应的GitHub账户上有个仓库test.git，且你的GitHub用户名是oldman，使用下面命令克隆</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git clone git@old.github.com:oldman/test.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>避免git错用密钥，把git全局的用户名和邮箱删除</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git config --global --unset user.email
+git config --global --unset user.name
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>删除后，以后进入每个仓库都要指定该仓库局部的<code>user.mail</code>和<code>user.name</code>。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>git config  user.email &quot;you@example.com&quot;
+git config  user.name &quot;Your Name&quot;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h2 id="连接多个远程服务器"><a href="#连接多个远程服务器" class="header-anchor">#</a> 连接多个远程服务器</h2> <p>一个改动推送到多个远程仓库去，比如一个开源项目，既想发布到 GitHub 又想发布到国内的码云上。</p> <ul><li>添加远程仓库地址，通过不同的地址推送到不同的远程</li></ul> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">git</span> remote -v
+
+<span class="token function">git</span> remote <span class="token function">add</span> github https://github.com/78778443/gittest.git
+
+<span class="token function">git</span> push github
+
+<span class="token function">git</span> push -u github 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ul><li>一个仓库多个地址，一条推送命令就可以往两个地址推送</li></ul> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">git</span> remote set-url --add origin https://github.com/78778443/gittest.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="小结"><a href="#小结" class="header-anchor">#</a> 小结</h3> <ol><li>新增多个远程仓库，不同的仓库配置不同的仓库地址</li> <li>新增多个远程仓库地址，把多个远程仓库地址放到一个仓库中</li></ol> <h2 id="远程出错需要覆盖"><a href="#远程出错需要覆盖" class="header-anchor">#</a> 远程出错需要覆盖</h2> <ol><li>代码覆盖</li> <li>记录覆盖 （<code>git reset &lt;hash值&gt; &amp;&amp; git push -f</code>）</li></ol> <h3 id="强制推送的权限问题"><a href="#强制推送的权限问题" class="header-anchor">#</a> 强制推送的权限问题</h3> <p>Git 默认情况下允许强制推送，但这样也有可能造成一些安全隐患，比如某个开发者做了一些操作，不想让其他人知道，他就可以使用强制推送的特点来抹掉痕迹，或者直接将整个远程仓库代码恢复到初始化的状态等问题。</p> <p>一般可以在搭建的git服务器上配置</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/#/edit/master/git_note/04git远程服务器相关.md" target="_blank" rel="noopener noreferrer">编辑此页</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">最后更新时间:</span> <span class="time">4/11/2020, 10:31:58 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/myVuepress/git_note/03git分支.html" class="prev">
+        git 分支
+      </a></span> <span class="next"><a href="/myVuepress/git_note/05git原理.html">
+        Git存储原理
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/myVuepress/assets/js/app.9affc5a9.js" defer></script><script src="/myVuepress/assets/js/2.f8270d47.js" defer></script><script src="/myVuepress/assets/js/20.7bc10cd4.js" defer></script>
+  </body>
+</html>
