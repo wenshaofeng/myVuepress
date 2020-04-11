@@ -101,8 +101,13 @@ Git 提供了一个叫做 git config 的工具（译注：实际是 git-config �
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
+#### 配置密码(osxkeychain凭据助手)
 
+在Git全局配置中进行设置(也可以在某一个项目里面设置):
 
+`git config --global credential.helper osxkeychain`
+
+经过上面的设置，下次访问https的项目时只需要输入一次密码,就会存储到osx的钥匙串中了,以后再也不会在Git中询问了.
 
 
 

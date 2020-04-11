@@ -25,7 +25,7 @@ $ git checkout testing
 
 
 
-## 分支合并
+## 分支合并 `git merge`
 
 #### fast-forward
 
@@ -87,7 +87,11 @@ Automatic merge failed; fix conflicts and then commit the result.
 - 自行解决冲突
 - 推荐使用Jetbrain全家桶内置的git工具
 
-## 分支变基
+## 分支变基`git rebase`
+
+另一种合并分支的方法是 `git rebase`。Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。
+
+Rebase 的优势就是可以创造更线性的提交历史，这听上去有些难以理解。如果只允许使用 Rebase 的话，代码库的提交历史将会变得异常清晰。
 
 回到两个分支最近的共同祖先，根据当前分支后续的历次提交对象，生成一系列文件补丁，然后以基底分支最后一个提交对象为新的出发点，逐个应用之前准备好的补丁文件，最后会生成一个新的合并提交对象，从而改写 提交历史。
 
@@ -112,15 +116,64 @@ Applying: added staged command
 
 ![](https://git-scm.com/figures/18333fig0329-tn.png)
 
+`git rebase`命令合并代码之后，版本记录会将目标分支的版本放在后面，然后再将当前分支的版本记录放在前边。
+
+#### gif 动画
+
+
+
+还是准备了两个分支；注意当前所在的分支是 bugFix（星号标识的是当前分支）
+
+我们想要把 bugFix 分支里的工作直接移到 master 分支上。移动以后会使得两个分支的功能看起来像是按顺序开发，但实际上它们是并行开发的。
+
+执行`git rebase master`
+
+![](./img/git_rebase.gif)
+
+现在 bugFix 分支上的工作在 master 的最顶端，同时我们也得到了一个更线性的提交序列。
+
+注意，提交记录 C3 依然存在（树上那个半透明的节点），而 C3' 是我们 Rebase 到 master 分支上的 C3 的副本。
+
+我们切换到了 master 上。把它 rebase 到 bugFix 分支上……
+执行`git rebase bugFix`
+
+![](./img/git_rebase2.gif)
+由于 bugFix 继承自 master，所以 Git 只是简单的把 master 分支的引用向前移动了一下而已。
 #### 风险
 
 - 变基会更改分支的commit路径
 - 禁止对远程分支进行变基
 
-## git cherry-pick
+## 交互式变基 （rebase）
+
+当你知道你所需要的提交记录（**并且**还知道这些提交记录的哈希值）时, 用 cherry-pick 再好不过了 —— 没有比这更简单的方式了。
+
+但是如果你不清楚你想要的提交记录的哈希值呢? 幸好 Git 帮你想到了这一点, 我们可以利用交互式的 rebase —— 如果你想从一系列的提交记录中找到想要的记录, 这就是最好的方法了
+
+交互式 rebase 指的是使用带参数 `--interactive` 的 rebase 命令, 简写为 `-i`，即 `git rebase -i`
+
+如果你在命令后增加了这个选项, Git 会打开一个 UI 界面并列出将要被复制到目标分支的备选提交记录，它还会显示每个提交记录的哈希值和提交说明，提交说明有助于你理解这个提交进行了哪些更改。
+
+在实际使用时，所谓的 UI 窗口一般会在文本编辑器 —— 如 Vim —— 中打开一个文件。 考虑到课程的初衷，我弄了一个对话框来模拟这些操作。
+
+当 rebase UI界面打开时, 你能做3件事:
+
+- 调整提交记录的顺序（通过鼠标拖放来完成）
+- 删除你不想要的提交（通过切换 `pick` 的状态来完成，关闭就意味着你不想要这个提交记录）
+- 合并提交。简而言之，它允许你把多个提交记录合并成一个。
+
+## git cherry-pick(遴选)
+
+
+
+有时候需要把另一个分支中的某个版本单独复制到当前分支中，如果直接使用`git merge`或者`git rebase`进行合并的话，会把另一个分支所有的版本记录都合并过来，这显然不是我们所需要的。
+
+Git 当中提供了一个功能，它可以将另外一个分支中的某个版本单独复制到当前的分支中来，这就是我们这节要学的`git cherry-pick`命令。
+
+
 
 - 选择另一个分支的commit在本分支重放
-- 重放当个commit
+- 重放单个commit
   - `git cherry-pick <commit-id>`
 - 重放多个commit
   - `git cherry-pick <commit-id-from> <commit-id-to>`

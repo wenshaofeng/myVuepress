@@ -8,7 +8,7 @@ const javaScript_sidebars = require('./siderbars/javaScript')
 
 module.exports = {
   // 部署站点的基础路径
-  base: '/',
+  base: '/myVuepress/',
   // 页面标题
   title: 'Person Blog',
   // 网页描述
@@ -50,7 +50,7 @@ module.exports = {
     // 所有页面自动生成侧边栏
     sidebar: 'auto',
     // 仓库地址
-    repo: '#',
+    // repo: '#',
     // 仓库链接label
     repoLabel: 'Github',
     // 编辑链接
