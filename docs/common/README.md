@@ -38,14 +38,14 @@ export default function sayHello () {
 ## 静态资源引用
 ```md
 // 不使用别名引用
-![不使用别名引用](~@vuepess/1.png)
+<!-- ![不使用别名引用](~@vuepess/1.png) -->
 
 // 使用别名引用
 ![使用别名引用](../images/vuepress/1.png)
 
 ```
 ### 不使用别名引用
-![不使用别名引用](~@vuepress/1.png)
+<!-- ![不使用别名引用](~@vuepress/1.png) -->
 
 ### 使用别名引用
 ![使用别名引用](../images/vuepress/1.png)

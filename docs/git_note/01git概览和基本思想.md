@@ -16,7 +16,7 @@ Git 是一个 SCM（因此也是 VCS！）。Git 网站的 URL 是 [https://git
 
 像 Git，Mercurial，Bazaar 以及 Darcs 等，**客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。**这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。因为每一次的提取操作，实际上都是一次对代码仓库的完整备份
 
-![](~@gitmg/DVCS.png)
+![](./img/DVCS.png)
 
 #### 优点与缺点
 
@@ -77,9 +77,9 @@ Git 是一个 SCM（因此也是 VCS！）。Git 网站的 URL 是 [https://git
 
 ### Git 直接保存快照而不是文件差异
 - 其他
-![](~@gitmg/others.png)
+![](./img/others.png)
 - Git
-![](~@gitmg/git_way.png)
+![](./img/git_way.png)
 
 ### git 配置
 

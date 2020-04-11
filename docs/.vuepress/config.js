@@ -4,6 +4,7 @@ const node_zhihu_sidebars = require('./siderbars/node_zhihu')
 const typescript_learn_sidebars = require('./siderbars/typescript_learn')
 const webpack_demo_sidebars = require('./siderbars/webpack_demo')
 const git_note_sidebars = require('./siderbars/git_note')
+const javaScript_sidebars = require('./siderbars/javaScript')
 
 module.exports = {
   // 部署站点的基础路径
@@ -35,7 +36,11 @@ module.exports = {
   port: 3000,
   markdown: {
     // 代码块行号
-    lineNumbers: true
+    lineNumbers: true,
+    // ......
+    extendMarkdown: md => {
+      md.use(require("markdown-it-disable-url-encode"))
+    }
   },
   themeConfig: {
     // 导航栏logo
@@ -45,13 +50,13 @@ module.exports = {
     // 所有页面自动生成侧边栏
     sidebar: 'auto',
     // 仓库地址
-    repo: 'https://github.com/wenshaofeng/myVuepress',
+    repo: '#',
     // 仓库链接label
     repoLabel: 'Github',
     // 编辑链接
     editLinks: true,
     // 编辑链接label
-    editLinkText: '编辑此',
+    editLinkText: '编辑此页',
     // 导航
     nav: [{
       text: '前端面试之道',
@@ -66,6 +71,10 @@ module.exports = {
       {
         text: 'javaScript忍者秘籍',
         link: '/jsbooks/renzhe/'
+      },
+      {
+        text: '你不知道的JavaScript',
+        link: '/jsbooks/you_Dont_Know_JavaScript/'
       },
 
       ]
@@ -125,6 +134,7 @@ module.exports = {
     sidebar: {
       '/jsbooks/es6/': genSidebarConfig('深入理解Es6'),
       '/jsbooks/renzhe/': genSidebarConfig('javaScript忍者秘籍'),
+      '/jsbooks/you_Dont_Know_JavaScript/': javaScript_sidebars,
       '/node/node_BFF/': node_BFF_sidebars,
       '/node/node_zhihu/': node_zhihu_sidebars,
       '/jsbooks/typescript_learn/': typescript_learn_sidebars,
@@ -139,7 +149,6 @@ module.exports = {
       alias: {
         '@vuepress': '../images/vuepress',
         '@vue': '../images/vue',
-        '@gitmg': '../git_note/img'
       }
     }
   }

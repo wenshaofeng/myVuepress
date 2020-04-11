@@ -124,3 +124,39 @@ git config --global --unset user.name
 git config  user.email "you@example.com"
 git config  user.name "Your Name"
 ```
+
+## 连接多个远程服务器
+
+一个改动推送到多个远程仓库去，比如一个开源项目，既想发布到 GitHub 又想发布到国内的码云上。
+
+- 添加远程仓库地址，通过不同的地址推送到不同的远程
+```shell
+git remote -v
+
+git remote add github https://github.com/78778443/gittest.git
+
+git push github
+
+git push -u github 
+```
+
+- 一个仓库多个地址，一条推送命令就可以往两个地址推送
+
+```shell
+git remote set-url --add origin https://github.com/78778443/gittest.git
+```
+
+### 小结
+
+1. 新增多个远程仓库，不同的仓库配置不同的仓库地址
+2. 新增多个远程仓库地址，把多个远程仓库地址放到一个仓库中
+
+## 远程出错需要覆盖
+1. 代码覆盖
+2. 记录覆盖 （`git reset <hash值> && git push -f`）
+
+### 强制推送的权限问题
+
+Git 默认情况下允许强制推送，但这样也有可能造成一些安全隐患，比如某个开发者做了一些操作，不想让其他人知道，他就可以使用强制推送的特点来抹掉痕迹，或者直接将整个远程仓库代码恢复到初始化的状态等问题。
+
+一般可以在搭建的git服务器上配置

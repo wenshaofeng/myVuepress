@@ -52,3 +52,5 @@ git config --global core.fileMode false
 cat .git/config
 ```
 在配置文件中，如果看到 `fileMode false` 则代表配置成功，如下图所示：
+
+![](./img/ignore.png)

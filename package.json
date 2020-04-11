@@ -4,7 +4,10 @@
     "docs:build": "vuepress build docs",
     "deploy": "bash deploy.sh"
   },
-  "dependencies": {},
+  "dependencies": {
+    "markdown-it-disable-url-encode": "^1.0.1",
+    "mdurl": "^1.0.1"
+  },
   "devDependencies": {
     "url-loader": "^4.0.0"
   }
