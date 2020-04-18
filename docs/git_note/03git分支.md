@@ -120,8 +120,6 @@ Applying: added staged command
 
 #### gif 动画
 
-
-
 还是准备了两个分支；注意当前所在的分支是 bugFix（星号标识的是当前分支）
 
 我们想要把 bugFix 分支里的工作直接移到 master 分支上。移动以后会使得两个分支的功能看起来像是按顺序开发，但实际上它们是并行开发的。
@@ -139,10 +137,45 @@ Applying: added staged command
 
 ![](./img/git_rebase2.gif)
 由于 bugFix 继承自 master，所以 Git 只是简单的把 master 分支的引用向前移动了一下而已。
+
+#### 场景
+
+- 一：合并多次提交记录
+
+  我们来合并最近的 4 次提交纪录，执行：
+
+  ```bash
+  git rebase -i HEAD~4
+  ```
+
+  如果你异常退出了 `vi` 窗口，不要紧张：
+
+  ```bash
+  git rebase --edit-todo
+  ```
+
+  这时候会一直处在这个编辑的模式里，我们可以回去继续编辑，修改完保存一下：
+
+  ```bash
+  git rebase --continue
+  ```
+
+  在任何时候，我们都可以用 `--abort` 参数来终止 `rebase` 的行动，并且分支会回到 `rebase` 开始前的状态。
+
+  ```bash
+  git rebase —abort
+  ```
+
+-  二：
+
+
+
 #### 风险
 
 - 变基会更改分支的commit路径
 - 禁止对远程分支进行变基
+- **如果提交存在于你的仓库之外，而别人可能基于这些提交进行开发，那么不要执行变基。**
+- 变基操作的实质是丢弃一些现有的提交，然后相应地新建一些内容一样但实际上不同的提交。
 
 ## 交互式变基 （rebase）
 
@@ -162,6 +195,8 @@ Applying: added staged command
 - 删除你不想要的提交（通过切换 `pick` 的状态来完成，关闭就意味着你不想要这个提交记录）
 - 合并提交。简而言之，它允许你把多个提交记录合并成一个。
 
+![](./img/rebase_3.gif)
+
 ## git cherry-pick(遴选)
 
 
@@ -177,6 +212,11 @@ Git 当中提供了一个功能，它可以将另外一个分支中的某个版�
   - `git cherry-pick <commit-id>`
 - 重放多个commit
   - `git cherry-pick <commit-id-from> <commit-id-to>`
+
+![](./img/cherrypick.gif)
+
+![](./img/cherrypick2.gif)
+
 
 ## 远程分支
 
